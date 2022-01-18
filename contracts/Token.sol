@@ -1,5 +1,7 @@
 pragma solidity ^0.8.0;
 
+import "hardhat/console.sol";
+
 contract Token {
     string public name = "My HardHat Token";
     string public symbol = "MHT";
@@ -18,6 +20,8 @@ contract Token {
     * The `external` modifier makes a function *only* callable from outside the contract.
      */
     function transfer(address to, uint256 amount) external {
+        console.log("Sender balance is %s tokens", balances[msg.sender]);
+        console.log("Trying to send %s tokens to %s", amount, to);
         //Check if the transaction sender has enough tokens.
         //If `require`'s first argument evaluates to `false` then the transaction will revert.
         require(balances[msg.sender] >= amount, "Not enough tokens");
